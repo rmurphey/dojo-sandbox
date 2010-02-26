@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Transformers</title>
+	<style>
+		body {
+			font-family:Helvetica, Arial, sans-serif;
+		}
+		
+		table th, table td {
+			padding: 10px;
+			border-collapse:collapse;
+			border:1px solid #000;
+		}
+		
+		.status {
+			font-weight:bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="controller">
+	</div>
+	
+	<input type="button" id="play" value="Play" />
+	
+	<script src="/js/dojo/dojo.js"></script>
+	<!-- <script src="/js/release/transformers/dojo/dojo.js"></script> -->
+	<script>
+		dojo.require('Transformers.Controller');
+		new Transformers.Controller();
+	</script>
+
+</body>
+</html>
