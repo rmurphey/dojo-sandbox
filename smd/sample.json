@@ -1,0 +1,169 @@
+{
+	transport	: 	'SAMPLE_GET',
+	envelope 	: 	'SAMPLE_PATH_TRAILING_SLASH',
+	target 		: 	'/json',
+	
+	services 	: 	{
+		checkin : {
+			target : '/json/checkin',
+			transport : 'SAMPLE_POST_WITH_PARAMS',
+			envelope : 'SAMPLE_POSTDATA',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'postData' }
+			]
+		},
+
+		pickTeam : {
+			target : '/json/checkin/pick_team',
+			parameters : [
+				{ name : 'checkin', type : 'integer' },
+				{ name : 'team', type : 'integer' }
+			]
+		},
+
+		search : {
+			target : '/json/checkin',
+			transport : 'SAMPLE_POST_WITH_PARAMS',
+			envelope : 'SAMPLE_POSTDATA',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'query', type : 'string' },
+				{ name : 'postData' }
+			]
+		},
+
+		game : {
+			parameters : [
+				{ name : 'game', type : 'integer' }
+			]
+		},
+		
+		callouts : {
+			parameters : [
+				{ name : 'callouts', type : 'string' }
+			]
+		},
+		
+		comments : {
+			envelope : 'PATH',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'comments', type : 'string' }
+			]
+		},
+		
+		cheer : {
+			transport : 'SAMPLE_POST',
+			target : '/json/cheer',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'player', type : 'integer' }
+			]
+		},
+
+		bet : {
+			target : '/json/bet',
+			transport : 'SAMPLE_POST_WITH_PARAMS',
+			envelope : 'SAMPLE_POSTDATA',
+			parameters : [
+				{ name : 'postData' }
+			]
+		},
+		
+		pbp : {
+			envelope : 'PATH',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'pbp_comments', type : 'string' }
+			]
+		},
+		
+		comment : {
+			transport : 'SAMPLE_POST_WITH_PARAMS',
+			envelope : 'SAMPLE_POSTDATA',
+			parameters : [
+				{ name : 'game', type : 'integer' },
+				{ name : 'post_comment' },
+				{ name : 'postData' }
+			]
+		},
+		
+		award : {
+			transport : 'SAMPLE_POST',
+			parameters : [
+				{ name : 'review', type : 'integer' },
+				{ name : 'award', type : 'integer' }
+			]
+		},
+		
+		twitter : {
+			parameters : [
+				{ name : 'twitter', type : 'integer' },
+				{ name : 'pbp_id' }
+			]
+		},
+		
+		facebook : {
+			parameters : [
+				{ name : 'facebook', type : 'integer' },
+				{ name : 'pbp_id' }
+			]
+		},
+		
+		registration : {
+			transport : 'SAMPLE_SYNC',
+			target : '/json/register',
+			parameters : [
+				{ name : 'username' },
+				{ name : 'email' }
+			]
+		},
+		
+		socialPost : {
+			target : '/json/post',
+			transport : 'SAMPLE_POST_WITH_PARAMS',
+			envelope : 'SAMPLE_POSTDATA',
+			parameters : [
+				{ name : 'pbp' },
+				{ name : 'postData' }
+			]
+		},
+		
+		pbpData : {
+			target : '/json/info',
+			parameters : [
+				{ name : 'pbp', type : 'integer' }
+			]
+		},
+		
+		user : {
+			parameters : [
+				{ name : 'user', type : 'integer' }
+			]
+		},
+		
+		login : {
+			target : '/json/login',
+			parameters : [
+				{ name : 'username' },
+				{ name : 'password' }
+			]
+		},
+		
+		feedAutocomplete : {
+			target : '/json/feed/autocomplete',
+			parameters : [
+				{ name : 'query' }
+			]
+		},
+		
+		storeFilter : {
+			target : '/json/feed/store',
+			parameters : [
+				{ name : 'id', type : 'integer' },
+				{ name : 'type', type : 'integer' }
+			]
+		}
+	}
+}
