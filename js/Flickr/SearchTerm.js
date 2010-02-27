@@ -35,24 +35,24 @@ dojo.require('dojox.data.FlickrRestStore');
 
 		_show : function(term) {
 			// we can receive /term/show messages from any SearchTerm.
-			// look to see if this one is related to this SearchTerm; 
+			// so, first, look to see if this one is related to this SearchTerm; 
 
 			// if not, set this SearchTerm as inactive
 			if (term != this.term) {
 				this.active = false;
-				dojo.removeClass(this.domNode, 'active');
+				d.removeClass(this.domNode, 'active');
 				return;
 			}
 		
 			// if so, is this SearchTerm already active? bail.
-			if (dojo.hasClass(this.domNode, 'active')) { return; }
+			if (d.hasClass(this.domNode, 'active')) { return; }
 
 			// if this message was related to this SearchTerm,
 			// and this SearchTerm isn't already active, make it
 			// active and fetch the data; mark the SearchTerm
 			// as loading in the meantime
 			this.active = true;
-			dojo.addClass(this.domNode, 'active');
+			d.addClass(this.domNode, 'active');
 		
 			this.domNode.innerHTML = 'loading ...';
 			this.store.fetch(this.request);

@@ -8,8 +8,9 @@ dojo.require('dojo.string');
 (function(d) {
 	d.declare('Transformers.Bot', null, {
 		turnLength : 500,
-		armMessage : 'Armed with ${missiles} missiles and ${guns} guns',
 		initialHealth : 100,
+
+		armMessage : 'Armed with ${missiles} missiles and ${guns} guns',
 		
 		constructor : function(config) {
 			this.config = config;
