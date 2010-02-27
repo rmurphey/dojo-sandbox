@@ -2,13 +2,13 @@ dependencies = {
 	stripConsole : "all",
 	action : 'release',
 	optimize : 'shrinksafe',
-	releaseName : 'transformers',
+	releaseName : 'flickr',
 	
 	layers: [
 		{
-			name: "../Transformers/_base.js",
+			name: "../Flickr/_base.js",
 			dependencies: [
-				"Transformers._base"
+				"Flickr._base"
 			]
 		},
 	],
@@ -16,6 +16,6 @@ dependencies = {
 	prefixes: [
 		[ "dijit", "../dijit" ],
 		[ "dojox", "../dojox" ],
-		[ "Transformers", "../Transformers" ]
+		[ "Flickr", "../Flickr" ]
 	]
 }
