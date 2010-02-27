@@ -5,6 +5,13 @@ Then, From inside the repository, run
 
 	git submodule update --init
 
+Alternately, you can get Dojo as a tarball
+
+	cd util
+	./getDojoTarball.sh
+	
+This will download the 23mb source tarball, unzip it, and put the files 
+in the right place. Probably.
 
 
 = USE THIS REPO AS A DOJO SKELETON APP =
