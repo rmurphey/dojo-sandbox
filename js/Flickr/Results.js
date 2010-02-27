@@ -10,11 +10,18 @@ dojo.require('dojo.string');
 
 		constructor : function(node) {
 			this.domNode = node;
+			this.containerWidth = d.position(this.domNode);
+			
+			this.imageSize = this._calculateImageSize();
 		
 			// listen for instructions 
 			d.subscribe('/items/show', this, '_showItems');
 			d.subscribe('/results/clear', this, '_clear');
 			d.subscribe('/results/resize', this, '_resize');
+		},
+		
+		_calculateImageSize : function() {
+			return this.containerWidth > 100 ? 'm' : 't'	
 		},
 	
 		_showItems : function(items) {
@@ -23,11 +30,14 @@ dojo.require('dojo.string');
 			var anims = [];
 		
 			d.forEach(items, function(item) {
+				console.log(item);
 			
 				// create an element for each item and add it to the results container
+				item.imgUrl = item.media[this.imageSize];
+				
 				var node = d.create('div', {
-					innerHTML : d.string.substitute(this.template, item)
-				});
+						innerHTML : d.string.substitute(this.template, item)
+					});
 			
 				d.place(node, this.domNode, 'last');
 			
