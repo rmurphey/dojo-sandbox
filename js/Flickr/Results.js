@@ -7,23 +7,30 @@ dojo.require('dojo.string');
 (function(d) {
 	dojo.declare('Flickr.Results', null, {
 		template : dojo.cache('Flickr', 'templates/image.html'),
-
-		constructor : function(node) {
-			this.domNode = node;
-			this.containerWidth = d.position(this.domNode);
-			
-			this.imageSize = this._calculateImageSize();
 		
+		sizes : {
+			"m" : 250,
+			"s" : 100
+		},
+
+		constructor : function(node, args) {
+			this.domNode = node;
+			
+			this.imageSize = (args && args.imageSize) || 'm';
+			
+			var containerSize = this.sizes[this.imageSize];
+			
+			if (d.position(this.domNode).w < containerSize) {
+				d.style(this.domNode, { "width" : containerSize + 'px'});
+				d.publish('/sidebar/width', [ containerSize ]);
+			}
+			
 			// listen for instructions 
 			d.subscribe('/items/show', this, '_showItems');
 			d.subscribe('/results/clear', this, '_clear');
 			d.subscribe('/results/resize', this, '_resize');
 		},
 		
-		_calculateImageSize : function() {
-			return this.containerWidth > 100 ? 'm' : 't'	
-		},
-	
 		_showItems : function(items) {
 			// receive any items and show them in the results area
 			this._clear();
