@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8" /> 
+<title>dflick</title> 
+
+<!-- 
+Thanks to Cody Lindley for the CSS, the markup, and the original concept.
+See the jQuery version at http://www.brokendigits.com/flickrDemo-jQuery/index.html
+
+Adapted to Dojo by Rebecca Murphey http://www.rebeccamurphey.com
+-->
+
+<style>
+html,body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 76% helvetica,arial,sans-serif;
+	overflow: hidden;
+}
+p {
+	margin: 0 10px 10px;
+}
+div#wrapper {
+}
+div#content {
+	position: absolute;
+	top: 59px;
+	left: 200px;
+	bottom: 0px;
+	right: 0px;
+	background: #3F3F3F;
+	overflow-y: auto;
+}
+div#header {
+	position: relative;
+	z-index: 99;
+	width: 100%;
+	height: 59px;
+	background: url('img/ToolbarViewBackground.png') repeat-x #EEE;
+}
+div#header h1 {
+	height: 59px;
+	line-height: 59px;
+	margin: 0;
+	padding-left: 10px;
+	color: #79B30B;
+}
+div#content p {
+	line-height: 1.4;
+}
+div#content div {
+	line-height: 140px;
+	padding: 5px 4px;
+	margin: 5px 2px;
+	text-align: center;
+	vertical-align: middle;
+	width: 140px;
+	display: -moz-inline-box; /* Firefox 2 */
+	display: inline-block; /* Firefox 3, IE8, etc. */
+	*display: inline; /* IE7 and lower; star hack. */
+}
+div#content div.active {
+	background: #999;
+}
+div#content img {
+	border: 1px solid black;
+	line-height: 140px;
+	margin-bottom: auto;
+	margin-top: auto;
+	max-height: 140px;
+	max-width: 140px;
+}
+div#sidebar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 200px;
+	background: #D5DDE6;
+	height: 100%;
+	z-index: 1;
+}
+div#sidebar h1 {
+	font-weight: normal;
+	font-size: 1.3em;
+	line-height: 55px;
+	padding-left: 10px;
+	margin: 0;
+	cursor: default;
+}
+div#sidebar h1.active {
+	background: #0000FF;
+	color: #fff;
+}
+div#sidebar h1:first-child {
+	padding-top: 59px;
+}
+div#extra {
+	background: #FF8539;
+	clear: left;
+	width: 100%;
+}
+div#footer {
+	background: #333;
+	color: #FFF;
+}
+div#footer p {
+	margin: 0;
+	padding: 5px 10px;
+}
+div#footer a {
+	display: inline;
+	padding: 0;
+	color: #C6D5FD;
+}
+
+div#header a {
+	display: block;
+	float: left;
+	height: 10px;
+	text-decoration: none;
+	color: black;
+	padding-top: 40px;
+	margin-left: 10px;
+	font-size: 0.9em;
+	cursor: default;
+}
+div#header a#addlist {
+	background: url('img/add.png') no-repeat center 10px;
+}
+div#header a#addlist:active {
+	background: url('img/addHighlighted.png') no-repeat center 10px;
+}
+div#header a#removelist {
+	background: url('img/remove.png') no-repeat center 10px;
+}
+div#header a#removelist:active {
+	background: url('img/removeHighlighted.png') no-repeat center 10px;
+} 
+div#header div#photosize {
+	position: absolute;
+	top: 18px;
+	right: 45px;
+	margin: 0px 10px;
+}
+div#header div#min {
+	position: absolute;
+	right: 210px;
+	top: 22px;
+}
+div#header div#max {
+	position: absolute;
+	right: 25px;
+	top: 22px;
+}
+</style>
+ 
+</head> 
+<body> 
+ 
+<div id="container"> 
+	<div id="header"> 
+		<a href="#" id="addlist">Add Photo List</a> 
+		<a href="#" id="removelist">Remove Photo List</a> 
+	</div> 
+ 
+	<div id="wrapper"> 
+		<div id="content"> 
+		</div> 
+	</div> 
+ 
+	<div id="sidebar"> 
+		<h1 class="active">Dojo</h1> 
+	</div> 
+ 
+</div> 
+
+<script src="js/dojo/dojo.js"></script> 
+<script>dojo.require('Flickr._base');</script>
+ 
+</body> 
+</html>
