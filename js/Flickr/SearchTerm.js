@@ -8,10 +8,10 @@ dojo.require('dojox.data.FlickrRestStore');
 	dojo.declare('Flickr.SearchTerm', [ dijit._Widget, dijit._Templated ], {
 		templateString : '<h1>${term}</h1>',
 		store : new dojox.data.FlickrRestStore(),
-		
+	
 		constructor : function(config) {
 			this.term = config.term;
-			
+		
 			// set up the request object that will be used for this term
 			this.request = {
 				onComplete : d.hitch(this, '_handleResponse'),
@@ -43,7 +43,7 @@ dojo.require('dojox.data.FlickrRestStore');
 				dojo.removeClass(this.domNode, 'active');
 				return;
 			}
-			
+		
 			// if so, is this SearchTerm already active? bail.
 			if (dojo.hasClass(this.domNode, 'active')) { return; }
 
@@ -53,26 +53,26 @@ dojo.require('dojox.data.FlickrRestStore');
 			// as loading in the meantime
 			this.active = true;
 			dojo.addClass(this.domNode, 'active');
-			
+		
 			this.domNode.innerHTML = 'loading ...';
 			this.store.fetch(this.request);
 		},
-		
+	
 		_handleResponse : function(items) {
 			// unmark the SearchTerm as loading
 			this.domNode.innerHTML = this.term;
 			d.removeClass(this.domNode, 'loading');
-			
+		
 			// publish the items received so they can be displayed
 			// by another component
 			d.publish('/items/show', [ items ]);
 		},
-		
+	
 		_handleError : function() {
 			this.domNode.innerHTML = this.term;
 			d.removeClass(this.domNode, 'loading');
 			alert('uh oh!');
 		}
-		
+	
 	});
 })(dojo);

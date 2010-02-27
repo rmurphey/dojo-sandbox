@@ -11,6 +11,7 @@ dojo.require('dijit._Widget');
 		},
 		
 		_addList : function(e) {
+			e.preventDefault();
 			// prompt the user to enter a tag; then, publish the addition
 			// so that another component can handle it -- remember, we're
 			// just a lowly toolbar
@@ -20,6 +21,7 @@ dojo.require('dijit._Widget');
 		},
 		
 		_removeList : function(e) {
+			e.preventDefault();
 			// publish the removal so another component can handle it
 			d.publish('/term/remove');
 		}
