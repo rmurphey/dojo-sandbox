@@ -14,7 +14,7 @@ dojo.require('Flickr.SearchTerm');
 			
 			existingTerms.forEach(function(el) {
 				var term = el.innerHTML;
-				this._newTerm(term);
+				this._makeNewTerm(term, el);
 				lastTerm = term;
 			}, this);
 			
@@ -31,16 +31,16 @@ dojo.require('Flickr.SearchTerm');
 			if (this.terms[term]) { return; }
 			
 			// if not, create a new SearchTerm for it; then show it
-			this._newTerm(term);
+			this._makeNewTerm(term);
 			d.publish('/term/show', [ term ]);
 		},
 		
-		_newTerm : function(term) {
+		_makeNewTerm : function(term, el) {
 			this.terms[term] = new Flickr.SearchTerm({ term : term }, el).placeAt(this.domNode, 'last');
 		},
 		
 		_removeTerm : function(term) {
-			// if no term is provided to remove, remove all active terms
+			// if no term is provided to remove, remove all active terms			
 			if (!term) {
 				for (var t in this.terms) {
 					if (this.terms.hasOwnProperty(t)) {
@@ -60,7 +60,6 @@ dojo.require('Flickr.SearchTerm');
 			// then, destroy the widget for the term and remove it from the terms registry
 			this.terms[term].destroy();
 			this.terms[term] = false;
-			
 		}
 	});
 })(dojo);
