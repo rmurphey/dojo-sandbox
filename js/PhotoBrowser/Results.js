@@ -6,7 +6,7 @@ dojo.require('dojo.string');
 
 (function(d) {
 	dojo.declare('PhotoBrowser.Results', null, {
-		template : dojo.cache('Flickr', 'templates/image.html'),
+		template : dojo.cache('PhotoBrowser', 'templates/image.html'),
 		
 		sizes : {
 			"m" : 250,
