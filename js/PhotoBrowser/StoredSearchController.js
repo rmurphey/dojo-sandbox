@@ -1,17 +1,13 @@
-dojo.provide('Flickr.StoredSearchController');
+dojo.provide('PhotoBrowser.StoredSearchController');
 
-dojo.require('Flickr.SearchController');
+dojo.require('PhotoBrowser.SearchController');
 dojo.require('dojox.storage');
 
 (function(d) {
-	d.declare('Flickr.StoredSearchController', [ Flickr.SearchController ], {
+	d.declare('PhotoBrowser.StoredSearchController', [ PhotoBrowser.SearchController ], {
 		storedSearches : [],
 		localStore : 'storedSearches',
 		
-		constructor : function() {
-			console.log('constructing');
-		},
-
 		postCreate : function() {
 			this.inherited(arguments);
 			

@@ -1,11 +1,11 @@
-dojo.provide('Flickr.Results');
+dojo.provide('PhotoBrowser.Results');
 
 dojo.require('dojo.fx');
 dojo.require('dojo.fx.easing');
 dojo.require('dojo.string');
 
 (function(d) {
-	dojo.declare('Flickr.Results', null, {
+	dojo.declare('PhotoBrowser.Results', null, {
 		template : dojo.cache('Flickr', 'templates/image.html'),
 		
 		sizes : {

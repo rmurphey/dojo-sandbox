@@ -1,11 +1,11 @@
-dojo.provide('Flickr.SearchTerm');
+dojo.provide('PhotoBrowser.SearchTerm');
 
 dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('dojox.data.FlickrRestStore');
 
 (function(d) {
-	dojo.declare('Flickr.SearchTerm', [ dijit._Widget, dijit._Templated ], {
+	dojo.declare('PhotoBrowser.SearchTerm', [ dijit._Widget, dijit._Templated ], {
 		templateString : '<h1>${term}</h1>',
 		store : new dojox.data.FlickrRestStore(),
 	

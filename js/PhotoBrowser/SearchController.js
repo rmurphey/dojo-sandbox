@@ -1,10 +1,10 @@
-dojo.provide('Flickr.SearchController');
+dojo.provide('PhotoBrowser.SearchController');
 
 dojo.require('dijit._Widget');
-dojo.require('Flickr.SearchTerm');
+dojo.require('PhotoBrowser.SearchTerm');
 
 (function(d) {
-	dojo.declare('Flickr.SearchController', [ dijit._Widget ], {
+	dojo.declare('PhotoBrowser.SearchController', [ dijit._Widget ], {
 		terms : {},
 		
 		postCreate : function() {
@@ -36,7 +36,7 @@ dojo.require('Flickr.SearchTerm');
 		},
 		
 		_makeNewTerm : function(term, el) {
-			this.terms[term] = new Flickr.SearchTerm({ term : term }, el).placeAt(this.domNode, 'last');
+			this.terms[term] = new PhotoBrowser.SearchTerm({ term : term }, el).placeAt(this.domNode, 'last');
 		},
 		
 		_removeTerm : function(term) {

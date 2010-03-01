@@ -1,9 +1,9 @@
-dojo.provide('Flickr.Toolbar');
+dojo.provide('PhotoBrowser.Toolbar');
 
 dojo.require('dijit._Widget');
 
 (function(d) {
-	dojo.declare('Flickr.Toolbar', [ dijit._Widget ], {
+	dojo.declare('PhotoBrowser.Toolbar', [ dijit._Widget ], {
 		postCreate : function() {
 			// enable add and remove buttons
 			this.connect(d.byId('addlist'), 'click', '_addList');
