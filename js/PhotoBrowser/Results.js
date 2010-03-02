@@ -4,31 +4,20 @@ dojo.require('dojo.fx');
 dojo.require('dojo.fx.easing');
 dojo.require('dojo.string');
 
+dojo.require('dijit.layout.ContentPane');
+
 (function(d) {
-	dojo.declare('PhotoBrowser.Results', null, {
+	dojo.declare('PhotoBrowser.Results', [ dijit.layout.ContentPane ], {
 		template : dojo.cache('PhotoBrowser', 'templates/image.html'),
 		
-		sizes : {
-			"m" : 250,
-			"s" : 100
-		},
-
 		constructor : function(node, args) {
 			this.domNode = node;
 			
 			this.imageSize = (args && args.imageSize) || 'm';
 			
-			var containerSize = this.sizes[this.imageSize];
-			
-			if (d.position(this.domNode).w < containerSize) {
-				d.style(this.domNode, { "width" : containerSize + 'px'});
-				d.publish('/sidebar/width', [ containerSize ]);
-			}
-			
 			// listen for instructions 
 			d.subscribe('/items/show', this, '_showItems');
 			d.subscribe('/results/clear', this, '_clear');
-			d.subscribe('/results/resize', this, '_resize');
 		},
 		
 		_showItems : function(items) {
@@ -37,12 +26,11 @@ dojo.require('dojo.string');
 			var anims = [];
 		
 			d.forEach(items, function(item) {
-				console.log(item);
-			
 				// create an element for each item and add it to the results container
-				item.imgUrl = item.media[this.imageSize];
+				item.imgUrl = item.media['m'];
+				item.photoPage = d.string.substitute('http://www.flickr.com/photos/${ownername}/${id}/', item);
 				
-				var node = d.create('div', {
+				var node = d.create('li', {
 						innerHTML : d.string.substitute(this.template, item)
 					});
 			
@@ -72,10 +60,6 @@ dojo.require('dojo.string');
 	
 		_clear : function() {
 			dojo.empty(this.domNode);
-		},
-	
-		_resize : function(size) {
-			// TODO
 		}
 	});
 })(dojo);

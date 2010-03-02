@@ -6,21 +6,12 @@ dojo.require('dojox.data.FlickrRestStore');
 
 (function(d) {
 	dojo.declare('PhotoBrowser.SearchTerm', [ dijit._Widget, dijit._Templated ], {
-		templateString : '<h1>${term}</h1>',
+		templateString : '<li>${term}</li>',
 		store : new dojox.data.FlickrRestStore(),
 	
 		constructor : function(config) {
 			this.term = config.term;
-		
-			// set up the request object that will be used for this term
-			this.request = {
-				onComplete : d.hitch(this, '_handleResponse'),
-				onError : d.hitch(this, '_handleError'),
-				query : {
-					apikey: "8c6803164dbc395fb7131c9d54843627",
-					tags : this.term.split(' ').join(',')
-				}
-			};
+			this.request = this._buildRequest();
 		},
 
 		postCreate : function() {
@@ -31,6 +22,17 @@ dojo.require('dojox.data.FlickrRestStore');
 			this.connect(this.domNode, 'click', function() {
 				d.publish('/term/show', [ this.term ]);
 			});
+		},
+		
+		_buildRequest : function() {
+			return {
+				onComplete : d.hitch(this, '_handleResponse'),
+				onError : d.hitch(this, '_handleError'),
+				query : {
+					apikey: "8c6803164dbc395fb7131c9d54843627",
+					tags : this.term.split(' ').join(',')
+				}
+			};
 		},
 
 		_show : function(term) {

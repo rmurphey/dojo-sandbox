@@ -40,9 +40,6 @@ dojo.require('dojox.storage');
 			pos = d.indexOf(term, this.storedSearches);
 			(pos > -1) && this.storedSearches.splice(pos, 1);
 			this._store();
-		},
-		
-		_store : function() {
 		}
 		
 	});

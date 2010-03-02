@@ -1,16 +1,20 @@
 dojo.provide('PhotoBrowser.Toolbar');
 
-dojo.require('dijit._Widget');
+dojo.require('dijit.layout.ContentPane');
 
 (function(d) {
-	dojo.declare('PhotoBrowser.Toolbar', [ dijit._Widget ], {
+	dojo.declare('PhotoBrowser.Toolbar', [ dijit.layout.ContentPane, dijit._Templated ], {
+		templatePath : dojo.moduleUrl('PhotoBrowser', 'templates/toolbar.html'),
+
 		postCreate : function() {
+			this.inherited(arguments);
 			// enable add and remove buttons
-			this.connect(d.byId('addlist'), 'click', '_addList');
-			this.connect(d.byId('removelist'), 'click', '_removeList');
+			this.connect(this.addSearch, 'click', '_addList');
+			this.connect(this.removeSearch, 'click', '_removeList');
 		},
 		
 		_addList : function(e) {
+			console.log('add');
 			e.preventDefault();
 			// prompt the user to enter a tag; then, publish the addition
 			// so that another component can handle it -- remember, we're

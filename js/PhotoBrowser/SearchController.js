@@ -1,15 +1,18 @@
 dojo.provide('PhotoBrowser.SearchController');
 
 dojo.require('dijit._Widget');
+dojo.require('dijit.layout.ContentPane');
 dojo.require('PhotoBrowser.SearchTerm');
 
 (function(d) {
-	dojo.declare('PhotoBrowser.SearchController', [ dijit._Widget ], {
+	dojo.declare('PhotoBrowser.SearchController', [ dijit.layout.ContentPane ], {
 		terms : {},
 		
 		postCreate : function() {
+			this.inherited(arguments);
+			
 			// find any terms that were included in html and create SearchTerm widgets for them
-			var existingTerms = d.query('h1', this.domNode);
+			var existingTerms = d.query('li', this.domNode);
 			var lastTerm;
 			
 			existingTerms.forEach(function(el) {
