@@ -5,7 +5,8 @@ dojo.require('dijit._Templated');
 dojo.require('dojox.data.FlickrRestStore');
 
 (function(d) {
-	dojo.declare('PhotoBrowser.SearchTerm', [ dijit._Widget, dijit._Templated ], {
+    
+	d.declare('PhotoBrowser.SearchTerm', [ dijit._Widget, dijit._Templated ], {
 		templateString : '<li>${term}</li>',
 		store : new dojox.data.FlickrRestStore(),
 	
