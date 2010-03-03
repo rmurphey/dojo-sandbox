@@ -14,7 +14,6 @@ dojo.require('dijit.layout.ContentPane');
 		},
 		
 		_addList : function(e) {
-			console.log('add');
 			e.preventDefault();
 			// prompt the user to enter a tag; then, publish the addition
 			// so that another component can handle it -- remember, we're

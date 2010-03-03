@@ -1,6 +1,6 @@
 dojo.provide('PhotoBrowser._base');
 
-dojo.require('PhotoBrowser.SearchController');
+dojo.require('PhotoBrowser.StoredSearchController');
 dojo.require('PhotoBrowser.Toolbar');
 dojo.require('PhotoBrowser.Results');
 
@@ -12,20 +12,20 @@ dojo.addOnLoad(function() {
 		style : 'width:100%; height:100%'
 	}, dojo.byId('container'));
 
-	var toolbar = new PhotoBrowser.Toolbar({ 
+	new PhotoBrowser.Toolbar({ 
 		region : 'top',
 		style : 'height:50px'
-	}, dojo.byId('toolbar')).placeAt(bc);
+	}, dojo.byId('toolbar'));
 	
-	var searches = new PhotoBrowser.SearchController({ 
+	new PhotoBrowser.StoredSearchController({ 
 		region : 'left', 
 		style : 'width:100px;', 
 		splitter : true 
-	}, dojo.byId('search_terms')).placeAt(bc);
+	}, dojo.byId('search_terms'));
 
-	var results = new PhotoBrowser.Results({ 
+	new PhotoBrowser.Results({ 
 		region : 'center'
-	}, dojo.byId('results')).placeAt(bc);
+	}, dojo.byId('results'));
 	
 	bc.startup();
 });
