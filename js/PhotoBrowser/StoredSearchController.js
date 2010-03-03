@@ -10,6 +10,7 @@ dojo.require('dojox.storage');
 		
 		postCreate : function() {
 			this.inherited(arguments);
+			this.useStorage = true;
 			
 			this.storedSearches = dojox.storage.get(this.localStore);
 			
@@ -23,9 +24,11 @@ dojo.require('dojox.storage');
 			
 			d.subscribe('/term/add', this, '_addToStore');
 			d.subscribe('/term/remove', this, '_removeFromStore');
+			d.subscribe('/storage', this, '_toggleStorage');
 		},
 		
 		_addToStore : function(term) {
+			if (!this.useStorage) { return; }
 			this.storedSearches.push(term);
 			dojox.storage.put(this.localStore, this.storedSearches, function(status, keyname) {
 				if (status == dojox.storage.FAILED) {
@@ -37,10 +40,16 @@ dojo.require('dojox.storage');
 		},
 		
 		_removeFromStore : function(term) {
+			if (!this.useStorage) { return; }
 			pos = d.indexOf(term, this.storedSearches);
 			(pos > -1) && this.storedSearches.splice(pos, 1);
 			this._store();
-		}
+		},
 		
+		_toggleStorage : function(on) {
+			console.log('storedSearches', on);
+			!on && dojox.storage.clear();
+			this.useStorage = on;
+		}
 	});
 })(dojo);

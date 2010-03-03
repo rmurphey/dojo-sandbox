@@ -11,6 +11,7 @@ dojo.require('dijit.layout.ContentPane');
 			// enable add and remove buttons
 			this.connect(this.addSearch, 'click', '_addList');
 			this.connect(this.removeSearch, 'click', '_removeList');
+			this.connect(this.useStorage, 'click', '_useStorage');
 		},
 		
 		_addList : function(e) {
@@ -27,6 +28,10 @@ dojo.require('dijit.layout.ContentPane');
 			e.preventDefault();
 			// publish the removal so another component can handle it
 			d.publish('/term/remove');
+		},
+		
+		_useStorage : function(e) {
+			d.publish('/storage', [ e.target.checked ]);
 		}
 	});
 })(dojo);
