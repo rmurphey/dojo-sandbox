@@ -60,12 +60,15 @@ ul {
 
 <body class="tundra"> 
  
-	<div id="container"> 
-		<ul id="toolbar"></ul> 
-		<ul id="search_terms"></ul> 
-		<ul id="results"></ul>  
+	<div id="container">
+		<div id="toolbar"></div>
+		<ul id="search_terms"></ul>
+		<ul id="results"></ul>
 	</div> 
 
+	<script>
+		var djConfig = { debugAtAllCosts:true };
+	</script>
 	<script src="js/dojo/dojo.js"></script> 
 	<script>dojo.require('PhotoBrowser._base');</script>
  

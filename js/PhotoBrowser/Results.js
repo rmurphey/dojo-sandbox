@@ -11,13 +11,17 @@ dojo.require('dijit.layout.ContentPane');
 		template : dojo.cache('PhotoBrowser', 'templates/image.html'),
 		
 		constructor : function(node, args) {
-			this.domNode = node;
 			
 			this.imageSize = (args && args.imageSize) || 'm';
 			
 			// listen for instructions 
 			d.subscribe('/items/show', this, '_showItems');
 			d.subscribe('/results/clear', this, '_clear');
+		},
+		
+		postCreate:function(){
+		    this.inherited(arguments);
+		    console.warn(this.domNode, this.containerNode);
 		},
 		
 		_showItems : function(items) {
@@ -30,12 +34,12 @@ dojo.require('dijit.layout.ContentPane');
 				item.imgUrl = item.media['m'];
 				item.photoPage = d.string.substitute('http://www.flickr.com/photos/${ownername}/${id}/', item);
 				
-				var node = d.create('li', {
-						innerHTML : d.string.substitute(this.template, item)
-					});
-			
-				d.place(node, this.domNode, 'last');
-			
+				var node = d.place("<li>" + d.string.substitute(this.template, item) + "</li>", this.containerNode, "last");
+				//var node = d.create('li', {
+				//		innerHTML : d.string.substitute(this.template, item)
+				//	});
+				//d.place(node, this.domNode, 'last');
+			    
 				// hide the item to start with; we'll fade it in momentarily
 				d.style(node, { opacity : 0 });
 			
@@ -59,7 +63,7 @@ dojo.require('dijit.layout.ContentPane');
 		},
 	
 		_clear : function() {
-			dojo.empty(this.domNode);
+			dojo.empty(this.containerNode);
 		}
 	});
 })(dojo);

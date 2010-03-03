@@ -5,7 +5,7 @@ dojo.require('dojox.storage');
 
 (function(d) {
 	d.declare('PhotoBrowser.StoredSearchController', [ PhotoBrowser.SearchController ], {
-		storedSearches : [],
+		storedSearches : [], // shared across all instances. do 'this.storedSearches = []' in postCreate to have individuals
 		localStore : 'storedSearches',
 		
 		postCreate : function() {
