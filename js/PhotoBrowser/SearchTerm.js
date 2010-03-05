@@ -51,9 +51,9 @@ dojo.require('dojox.data.FlickrRestStore');
 			// if not, set this SearchTerm as inactive
 			if (term != this.term) {
 				this.active = false;
-				console.log(term, this.term);
-				this.domNode && d.removeClass(this.domNode, 'active') && d.removeClass(this.domNode, 'loading');
-				console.log('removed classes');
+				this.domNode && 
+					d.removeClass(this.domNode, 'active') && 
+					d.removeClass(this.domNode, 'loading');
 				return;
 			}
 		

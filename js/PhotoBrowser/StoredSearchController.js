@@ -37,8 +37,6 @@ dojo.require('dojox.storage');
 		},
 		
 		_store : function() {
-			console.log('storing', this.storedSearches);
-			
 			dojox.storage.put(this.localStore, this.storedSearches, d.hitch(this, function(status, keyname) {
 				if (status == dojox.storage.FAILED) {
 					alert("You do not have permission to store data for this web site.");
