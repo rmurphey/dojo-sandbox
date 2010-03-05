@@ -11,18 +11,6 @@ dojo.require('PhotoBrowser.SearchTerm');
 		postCreate : function() {
 			this.inherited(arguments);
 			
-			// find any terms that were included in html and create SearchTerm widgets for them
-			var lastTerm;
-			
-			d.query('li', this.domNode).forEach(function(el) {
-				var term = el.innerHTML;
-				this._makeNewTerm(term, el);
-				lastTerm = term;
-			}, this);
-			
-			// if any existing terms were added, show the last one
-			this.terms[lastTerm] && d.publish('/term/show', [ lastTerm ]);
-			
 			// listen for instructions to add or remove terms from the list
 			d.subscribe('/term/add', this, '_addTerm');
 			d.subscribe('/term/remove', this, '_removeTerm');
@@ -42,17 +30,6 @@ dojo.require('PhotoBrowser.SearchTerm');
 		},
 		
 		_removeTerm : function(term) {
-			// if no term is provided to remove, remove all active terms			
-			if (!term) {
-				for (var t in this.terms) {
-					if (this.terms.hasOwnProperty(t)) {
-						this.terms[t].active && this.terms[t].destroy();
-					}
-				}
-				d.publish('/results/clear');
-				return;
-			}
-			
 			// if a term is provided and there is no widget for it, bail
 			if (!this.terms[term]) { return; }
 			
@@ -61,6 +38,7 @@ dojo.require('PhotoBrowser.SearchTerm');
 			
 			// then, destroy the widget for the term and remove it from the terms registry
 			this.terms[term].destroy();
+			console.log('destroyed', term);
 			this.terms[term] = false;
 		}
 	});
