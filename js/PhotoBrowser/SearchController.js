@@ -12,10 +12,9 @@ dojo.require('PhotoBrowser.SearchTerm');
 			this.inherited(arguments);
 			
 			// find any terms that were included in html and create SearchTerm widgets for them
-			var existingTerms = d.query('li', this.domNode);
 			var lastTerm;
 			
-			existingTerms.forEach(function(el) {
+			d.query('li', this.domNode).forEach(function(el) {
 				var term = el.innerHTML;
 				this._makeNewTerm(term, el);
 				lastTerm = term;

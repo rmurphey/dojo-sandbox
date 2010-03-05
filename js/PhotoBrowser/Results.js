@@ -34,11 +34,11 @@ dojo.require('dijit.layout.ContentPane');
 				item.imgUrl = item.media['m'];
 				item.photoPage = d.string.substitute('http://www.flickr.com/photos/${ownername}/${id}/', item);
 				
-				var node = d.place("<li>" + d.string.substitute(this.template, item) + "</li>", this.containerNode, "last");
-				//var node = d.create('li', {
-				//		innerHTML : d.string.substitute(this.template, item)
-				//	});
-				//d.place(node, this.domNode, 'last');
+				var node = d.place(
+					"<li>" + d.string.substitute(this.template, item) + "</li>", 
+					this.containerNode, 
+					"last"
+				);
 			    
 				// hide the item to start with; we'll fade it in momentarily
 				d.style(node, { opacity : 0 });
