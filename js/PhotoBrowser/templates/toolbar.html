@@ -1,7 +1,12 @@
 <div dojoAttachPoint="containerNode">
-	<ul class="actions" dojoAttachPoint="actions">
-		<li dojoAttachPoint="addSearch">Add search term</li>
+	<ul>
+		<li>
+			<label for="searchTerm">Add a search term</label>
+			<input name="searchTerm" dojoAttachPoint="addSearch" />
+		</li>
+		<li class="slider">
+			<label>Photo size</label>
+			<div dojoAttachPoint="sliderControl"></div>
+		</li>
 	</ul>
-		
-	<div dojoAttachPoint="sliderControl"></div>
 </div>

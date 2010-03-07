@@ -11,7 +11,7 @@ dojo.require('dijit.layout.ContentPane');
 		postCreate : function() {
 			this.inherited(arguments);
 			// enable add and remove buttons
-			this.connect(this.addSearch, 'click', '_addTerm');
+			this.connect(this.addSearch, 'keypress', '_addTerm');
 			
 			this.slider = new dijit.form.HorizontalSlider({
 				name : 'slider',
@@ -28,13 +28,14 @@ dojo.require('dijit.layout.ContentPane');
 		},
 		
 		_addTerm : function(e) {
+			if (e.keyCode != d.keys.ENTER) { return; }
 			e.preventDefault();
-			// prompt the user to enter a tag; then, publish the addition
-			// so that another component can handle it -- remember, we're
-			// just a lowly toolbar
-			var term = prompt('Enter a tag to search for photos', '');
+
+			var term = d.trim(this.addSearch.value);
 			if (!term) { return; }
+			
 			d.publish('/term/add', [ term ]);
+			this.addSearch.value = '';
 		},
 		
 		_useStorage : function(e) {
