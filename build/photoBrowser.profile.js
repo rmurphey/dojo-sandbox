@@ -2,13 +2,13 @@ dependencies = {
 	stripConsole : "all",
 	action : 'release',
 	optimize : 'shrinksafe',
-	releaseName : 'flickr',
+	releaseName : 'photoBrowser',
 	
 	layers: [
 		{
-			name: "../Flickr/_base.js",
+			name: "../PhotoBrowser/_base.js",
 			dependencies: [
-				"Flickr._base"
+				"PhotoBrowser._base"
 			]
 		},
 	],
@@ -16,6 +16,6 @@ dependencies = {
 	prefixes: [
 		[ "dijit", "../dijit" ],
 		[ "dojox", "../dojox" ],
-		[ "Flickr", "../Flickr" ]
+		[ "PhotoBrowser", "../PhotoBrowser" ]
 	]
 }
