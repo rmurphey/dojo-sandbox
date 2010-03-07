@@ -44,7 +44,6 @@ dojo.require('dojox.data.FlickrRestStore');
 		},
 
 		_show : function(term) {
-			console.log('checking whether to show', term, this.term);
 			// we can receive /term/show messages from any SearchTerm.
 			// so, first, look to see if this one is related to this SearchTerm; 
 

@@ -25,7 +25,6 @@ dojo.require('dijit.layout.ContentPane');
 		},
 		
 		_resize : function(size) {
-			console.log('_resize');
 			this.imageSize = size;
 			this.images && this.images.attr('width', this.imageSize);
 			d.query('> li', this.domNode).style({
@@ -79,7 +78,7 @@ dojo.require('dijit.layout.ContentPane');
 				anim.play(50 * anims.length);
 			}, this);
 			
-			this.images = d.query('img', this.containerNode).style('width', this.imageSize);
+			this.images = d.query('img', this.containerNode).attr('width', this.imageSize);
 		},
 	
 		_clear : function() {

@@ -40,19 +40,15 @@ dojo.require('dojox.storage');
 			dojox.storage.put(this.localStore, this.storedSearches, d.hitch(this, function(status, keyname) {
 				if (status == dojox.storage.FAILED) {
 					alert("You do not have permission to store data for this web site.");
-				} else if (status == dojox.storage.SUCCESS) {
-					console.log('storage success at ' + keyname, this.storedSearches);
 				}
 			}));			
 		},
 		
 		_removeFromStore : function(term) {
 			pos = d.indexOf(this.storedSearches, term);
-			console.log('removing', term, this.storedSearches, pos);
 			if (pos > -1) {
 				this.storedSearches.splice(pos, 1);
 				this._store();
-				console.log('stored removal');
 			}
 		},
 		
