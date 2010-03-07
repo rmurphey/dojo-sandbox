@@ -27,11 +27,11 @@ dojo.require('dijit.layout.ContentPane');
 		_resize : function(size) {
 			console.log('_resize');
 			this.imageSize = size;
-			this._doResize();
-		},
-		
-		_doResize : function() {
 			this.images && this.images.attr('width', this.imageSize);
+			d.query('> li', this.domNode).style({
+				width : this.imageSize + 'px',
+				height: this.imageSize + 'px'
+			});
 		},
 		
 		_showItems : function(items) {
@@ -52,8 +52,8 @@ dojo.require('dijit.layout.ContentPane');
 				
 				d.style(node, {
 					opacity : 0,
-					width : this.imageSize,
-					height: this.imageSize
+					width : this.imageSize + 'px',
+					height: this.imageSize + 'px'
 				});
 				
 				d.connect(node, 'click', this, function(e) {
