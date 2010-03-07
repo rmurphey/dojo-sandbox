@@ -6,6 +6,7 @@ dojo.require('dojo.string');
 dojo.require('dojo.NodeList-fx');
 
 dojo.require('dijit.layout.ContentPane');
+dojo.require('dojox.image.Lightbox');
 
 (function(d) {
 	dojo.declare('PhotoBrowser.Results', [ dijit.layout.ContentPane ], {
@@ -13,6 +14,7 @@ dojo.require('dijit.layout.ContentPane');
 		
 		constructor : function(node, args) {
 			this.imageSize = (args && args.imageSize) || 250;
+			this.lightboxes = [];
 			
 			// listen for instructions 
 			d.subscribe('/items/show', this, '_showItems');
@@ -49,17 +51,22 @@ dojo.require('dijit.layout.ContentPane');
 					'last'
 				);
 				
+				var lb = new dojox.image.Lightbox({
+					href : item.media['l'],
+					group : 'results',
+					modal : true,
+					title : d.string.substitute("${title} by ${ownername}", item)
+				}, node);
+				
 				d.style(node, {
 					opacity : 0,
 					width : this.imageSize + 'px',
 					height: this.imageSize + 'px'
 				});
 				
-				d.connect(node, 'click', this, function(e) {
-					e.preventDefault();
-					d.publish('/photo/detail', [ e.target, item ]);
-				});
-			    
+				this.lightboxes.push(lb);
+				lb.startup();
+
 				// fancy fadein effect from twitterverse by peter higgins
 				// http://github.com/phiggins42/twitterverse/blob/master/src/beer/Search.js
 				var anim = d.fadeIn({
@@ -83,6 +90,9 @@ dojo.require('dijit.layout.ContentPane');
 	
 		_clear : function() {
 			d.empty(this.domNode);
+			d.forEach(this.lightboxes, function(lb) {
+				lb.destroy();
+			});
 		}
 	});
 })(dojo);

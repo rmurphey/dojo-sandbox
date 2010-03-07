@@ -12,6 +12,7 @@ dojo.require('dijit.layout.ContentPane');
 			this.inherited(arguments);
 			// enable add and remove buttons
 			this.connect(this.addSearch, 'keypress', '_addTerm');
+			this.connect(this.saveSearches, 'click', '_useStorage');
 			
 			this.slider = new dijit.form.HorizontalSlider({
 				name : 'slider',
@@ -39,6 +40,7 @@ dojo.require('dijit.layout.ContentPane');
 		},
 		
 		_useStorage : function(e) {
+			console.log(e.target.checked);
 			d.publish('/storage', [ e.target.checked ]);
 		}
 	});
